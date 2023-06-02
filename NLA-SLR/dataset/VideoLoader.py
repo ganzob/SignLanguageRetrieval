@@ -20,11 +20,12 @@ def _load_frame_nums_to_4darray(video, frame_nums):
         `lintel.loadvid_frame_nums`, containing the specified frames, decoded.
     """
     decoded_frames, width, height = lintel.loadvid_frame_nums(video, frame_nums=frame_nums)
+    #width, height = 640,480
     decoded_frames = np.frombuffer(decoded_frames, dtype=np.uint8)
     decoded_frames = np.reshape(
         decoded_frames,
         newshape=(-1, height, width, 3))
-
+    #print('decoded_frames:',decoded_frames.shape)
     return decoded_frames
 
 
@@ -159,6 +160,7 @@ def load_video(zip_file, name, vlen, num_frames, dataset_name, is_train,
         path = zip_file+'@'+video_file
         video_byte = ZipReader.read(path)
         video_arrays = _load_frame_nums_to_4darray(video_byte, selected_index) #T,H,W,3
+        print('videoo:',video_arrays.shape)
     elif 'MSASL' in dataset_name or 'NMFs-CSL' in dataset_name:
         video_arrays = read_jpg(zip_file, dataset_name, selected_index, vlen, ori_vfile)
     
@@ -176,9 +178,12 @@ def load_batch_video(zip_file, names, vlens, dataset_name, is_train,
     
     batch_videos, batch_keypoints = [], []
     for name, vlen, ori_vfile in zip(names, vlens, ori_video_files):
+        print(name,vlen,ori_vfile)
         video, selected_index, pad = load_video(zip_file, name, vlen, num_output_frames, dataset_name, is_train, index_setting, temp_scale, ori_vfile)
         # video = torch.tensor(video).to(torch.uint8)
         video = torch.tensor(video).float()  #T,H,W,C
+
+        print('shape:',video.shape)
         if 'NMFs-CSL' in dataset_name:
             video = torchvision.transforms.functional.resize(video.permute(0,3,1,2), [256,256]).permute(0,2,3,1)
         video /= 255
