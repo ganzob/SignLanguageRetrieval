@@ -4,3 +4,6 @@
 pose_per_individual_videos/
 *log
 archived/
+*wandb
+NLA-SLR/splits/
+NLA-SLR/results/
