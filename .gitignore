@@ -1,0 +1,6 @@
+
+*.zip
+*.pt
+pose_per_individual_videos/
+*log
+archived/
