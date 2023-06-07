@@ -11,11 +11,11 @@ data:
     - pose
     - mouth_half
     - hand
-  zip_file: ../../data/wlasl_2000/wlasl_resized/WLASL2000_resized.zip
+  zip_file: ../../data/wlasl_2000/WLASL2000.zip
   word_emb_file: ../../data/wlasl_2000/wlasl_word_embeddings.pkl
-  train: ../../data/wlasl_2000/train_new.pkl
-  dev: ../../data/wlasl_2000/dev_new.pkl
-  test: ../../data/wlasl_2000/test_new.pkl
+  train: ../../data/wlasl_2000/train.pkl
+  dev: ../../data/wlasl_2000/dev.pkl
+  test: ../../data/wlasl_2000/test.pkl
   dataset_name: WLASL_2000
   level: word #word or char
   txt_lowercase: true
@@ -50,7 +50,7 @@ training:
   random_seed: 321
   shuffle: True
   num_workers: 8
-  batch_size: 1  #to-debug!
+  batch_size: 4  #to-debug!
   total_epoch: 100
   keep_last_ckpts: 1
   validation: 
