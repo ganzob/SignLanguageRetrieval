@@ -26,7 +26,7 @@ def make_wandb(model_dir, cfg):
     if is_main_process():
         if 'debug' in model_dir:
             return None
-        wandb.login(key='9451b6c734f487665f86afbd6143dc8db0ffda3f')
+        wandb.login(key='b7373e53125290ca3bedd5e37749e62d5b1fbf06')
         run = wandb.init(project='ISLR_slide', config=cfg, reinit=True)
         wandb.run.name = model_dir.split('/')[-1]
         wandb.run.save()
