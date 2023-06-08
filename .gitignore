@@ -9,3 +9,6 @@ NLA-SLR/splits/
 NLA-SLR/results/
 *.mp4
 data/
+*.pkl
+*.pyc
+
