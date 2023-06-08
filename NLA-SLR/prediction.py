@@ -195,7 +195,8 @@ if __name__ == "__main__":
     cfg = load_config(args.config)
     cfg['local_rank'], cfg['world_size'], cfg['device'] = init_DDP()
     set_seed(seed=cfg["training"].get("random_seed", 42))
-    model_dir = cfg['training']['model_dir']
+    #model_dir = cfg['training']['model_dir']
+    model_dir = 'results/NLA-SLR/nla_slr_wlasl_2000/'
     os.makedirs(model_dir, exist_ok=True)
     global logger
     logger = make_logger(model_dir=model_dir, log_file='prediction_{}_{}.log'.format(args.eval_setting, cfg['local_rank']))
